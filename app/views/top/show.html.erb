@@ -1,0 +1,9 @@
+<div ng-controller="BookCtrl">
+
+<div infinite-scroll="loadMore()" infinite-scroll-disabled='busy'>
+  <div ng-repeat="item in items">
+  	{{item.title}}
+  </div>
+</div>
+
+</div>

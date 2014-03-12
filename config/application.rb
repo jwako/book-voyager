@@ -29,11 +29,11 @@ module BookVoyager
     # For grape
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir["#{Rails.root}/app"]
-    # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     # For grape-rable
     config.middleware.use(Rack::Config) do |env|
       env['api.tilt.root'] = Rails.root.join "app", "views", "api"
     end
+    
   end
 end

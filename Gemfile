@@ -42,6 +42,8 @@ gem 'angularjs-rails'
 gem 'grape'
 gem 'grape-rabl'
 
+gem "bower-rails", "~> 0.7.1"
+
 # RSpec
 group :test, :development do
   gem "rspec-rails", '~> 2.14.1'

@@ -2,8 +2,6 @@ BookVoyager::Application.routes.draw do
   
   mount Base::API => '/'
 
-  root "pages#home"
+  root :to => 'top#show'
   
-  get "/home", to: "pages#home", as: "home"
-
 end
