@@ -37,6 +37,11 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 
 gem 'amazon-ecs'
 
+gem 'angularjs-rails'
+
+gem 'grape'
+gem 'grape-rabl'
+
 # RSpec
 group :test, :development do
   gem "rspec-rails", '~> 2.14.1'
