@@ -35,6 +35,7 @@ end
 
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
+gem 'amazon-ecs'
 
 # RSpec
 group :test, :development do

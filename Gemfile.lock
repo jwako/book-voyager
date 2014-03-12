@@ -26,6 +26,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    amazon-ecs (2.2.5)
+      nokogiri (~> 1.4)
+      ruby-hmac (~> 0.3)
     arel (4.0.2)
     atomic (1.1.15)
     bcrypt (3.1.7)
@@ -200,6 +203,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    ruby-hmac (0.4.0)
     ruby-progressbar (1.4.2)
     safe_yaml (1.0.1)
     sass (3.3.2)
@@ -251,6 +255,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amazon-ecs
   bcrypt-ruby (~> 3.1.2)
   better_errors
   binding_of_caller
