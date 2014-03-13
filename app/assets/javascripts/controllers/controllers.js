@@ -1,8 +1,8 @@
-var bookvoyagerApp = angular.module('bookvoyagerApp', ['infinite-scroll']);
+var bookControllers = angular.module('bookControllers', ['infinite-scroll']);
 
-bookvoyagerApp.controller('BookCtrl', function($scope, $http) {
+bookControllers.controller('BookCtrl', function($scope, $http) {
 	$scope.page = 1;
-	$scope.items = []
+	$scope.items = [];
 
   $scope.loadMore = function() {
   	$scope.busy = true;
@@ -13,8 +13,19 @@ bookvoyagerApp.controller('BookCtrl', function($scope, $http) {
     	$scope.busy = false;
   	});
   	$scope.page += 1;
-  };
+  }
 
 });
 
+bookControllers.controller('CategoryCtrl', function($scope, $http) { 
+  $http.get('/v1/categories').success(function(data) {
+    $scope.tree = data;
+  });
+
+  $scope.getChildCategories = function(category) {
+    $http.get('/v1/categories?bn=' + category.node_id).success(function(data) {
+      category.nodes = data;
+    });
+  }
+});
 	
