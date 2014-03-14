@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="category-tmpl">
-	<span ng-click="getChildCategories(data)">{{data.name}}</span>
+	<span ng-click="refresh(data)">{{data.name}}</span>
 	<ul class="list-group">
 		<li class="list-group-item" ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></li>
 	</ul>
@@ -8,13 +8,13 @@
 <div class="row">
 
   <div class="col-xs-3">
-	  <ul class="list-group" ng-controller="CategoryCtrl">
+	  <ul id="categories" class="list-group" ng-controller="CategoryCtrl">
 			<li class="list-group-item" ng-repeat="data in tree" ng-include="'category-tmpl'"></li>
 		</ul>
   </div>
 
   <div class="col-xs-9">
-		<div ng-controller="BookCtrl">
+		<div id="books" ng-controller="BookCtrl">
 			<div infinite-scroll="loadMore()" infinite-scroll-disabled='busy'>
 			  <div ng-repeat="item in items">
 			  	{{item.title}}
