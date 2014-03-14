@@ -1,17 +1,17 @@
 var bookControllers = angular.module('bookControllers', ['infinite-scroll']);
 
-bookControllers.controller('BookCtrl', function($scope, $http) {
+bookControllers.controller('BookCtrl', function($scope, $http, Book) {
 	$scope.page = 1;
 	$scope.items = [];
 
   $scope.loadMore = function() {
   	$scope.busy = true;
-  	$http.get('/v1/books/' + $scope.page + '.json').success(function(data) {
-  		for (var i = 0; i < data.length; i++) {
-        $scope.items.push(data[i]);
+    Book.getBooks($scope.page).then(function(book) {
+      $scope.busy = false;
+      for (var i = 0; i < book.data.length; i++) {
+        $scope.items.push(book.data[i]);
       }
-    	$scope.busy = false;
-  	});
+    });
   	$scope.page += 1;
   }
 
@@ -27,5 +27,6 @@ bookControllers.controller('CategoryCtrl', function($scope, $http) {
       category.nodes = data;
     });
   }
+
 });
 	
