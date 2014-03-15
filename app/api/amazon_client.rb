@@ -8,10 +8,11 @@ module AmazonClient
 		  res = Amazon::Ecs.item_search(
 		    @browse_node_id,
 		    { 
+		    	:serach_index => 'Books',
 		    	:type => 'BrowseNode', 
 		      :country => 'jp',
 		      :response_group => 'Medium',
-		      :sort => 'daterank',
+		      :sort => 'salesrank',
 		      :item_page => params[:id]
 		    }
 		  )

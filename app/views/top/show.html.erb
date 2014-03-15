@@ -1,23 +1,27 @@
 <script type="text/ng-template" id="category-tmpl">
 	<span ng-click="refresh(data)">{{data.name}}</span>
-	<ul class="list-group">
-		<li class="list-group-item" ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></li>
-	</ul>
+	<div class="list-group" ng-show="data.show_flag">
+		<a href="#" class="list-group-item" ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></a>
+	</div>
 </script>
 
 <div class="row">
 
   <div class="col-xs-3">
-	  <ul id="categories" class="list-group" ng-controller="CategoryCtrl">
-			<li class="list-group-item" ng-repeat="data in tree" ng-include="'category-tmpl'"></li>
-		</ul>
+	  <div id="categories" class="list-group" ng-controller="CategoryCtrl">
+			<a href="#" class="list-group-item" ng-repeat="data in tree" ng-include="'category-tmpl'"></a>
+		</div>
   </div>
 
   <div class="col-xs-9">
 		<div id="books" ng-controller="BookCtrl">
 			<div infinite-scroll="loadMore()" infinite-scroll-disabled='busy'>
-			  <div ng-repeat="item in items">
-			  	{{item.title}}
+				<div class="row">
+  				<div class="col-xs-6 col-md-3" ng-repeat="item in items" style="height:300px;">
+	  				<a href="#" class="thumbnail"><img ng-src="{{item.image_url}}"></a>
+				  	<p class="text-muted"><small>{{item.title}}</small></p>
+				  	<p class="text-danger"><small>{{item.price}}</small></p>
+				  </div>
 			  </div>
 			</div>
 		</div>
