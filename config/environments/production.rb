@@ -93,5 +93,10 @@ BookVoyager::Application.configure do
     password: ENV["SMTP_PWD"]
   }
 
+  # Heroku
   config.assets.initialize_on_precompile = false
+
+  # AngularJS
+  config.assets.js_compressor = Uglifier.new(mangle: false)
+
 end
