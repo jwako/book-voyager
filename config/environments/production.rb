@@ -94,11 +94,9 @@ BookVoyager::Application.configure do
   }
 
   # Heroku
-  config.assets.initialize_on_precompile = false
+  # config.assets.initialize_on_precompile = false
 
   # AngularJS
   config.assets.js_compressor = Uglifier.new(mangle: false)
 
-  # For debugging
-  config.assets.debug = true
 end
