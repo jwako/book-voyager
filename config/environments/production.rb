@@ -92,4 +92,6 @@ BookVoyager::Application.configure do
     user_name: ENV["SMTP_USER"],
     password: ENV["SMTP_PWD"]
   }
+
+  config.assets.initialize_on_precompile = false
 end
