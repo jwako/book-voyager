@@ -8,19 +8,37 @@
 <div class="row">
 
   <div class="col-xs-3">
+  	<h4>カテゴリ</h4>
 	  <div id="categories" class="list-group" ng-controller="CategoryCtrl">
 			<a href="#" class="list-group-item" ng-repeat="data in tree" ng-include="'category-tmpl'"></a>
 		</div>
   </div>
 
   <div class="col-xs-9">
+  	<h4>絞り込み条件</h4>
+  	<div class="panel panel-default" id="conditions" ng-controller="ConditionCtrl">
+		  <div class="panel-body">
+		  	<ul class="nav nav-pills">
+			    <li><strong>価格帯</strong></li>
+			    <li ng-click="retrieveByPrice(0)"><a href="#">0-250円</a></li>
+			    <li ng-click="retrieveByPrice(1)"><a href="#">250-500円</a></li>
+			    <li ng-click="retrieveByPrice(2)"><a href="#">500-1000円</a></li>
+					<li ng-click="retrieveByPrice(3)"><a href="#">1000-1500円</a></li>
+			    <li ng-click="retrieveByPrice(4)"><a href="#">1500-3000円</a></li>
+			    <li ng-click="retrieveByPrice(5)"><a href="#">3000-5000円</a></li>
+			    <li ng-click="retrieveByPrice(6)"><a href="#">5000円以上</a></li>
+				</ul>
+		  </div>
+		</div>
+
 		<div id="books" ng-controller="BookCtrl">
 			<div infinite-scroll="loadMore()" infinite-scroll-disabled='busy'>
 				<div class="row">
   				<div class="col-xs-6 col-md-3" ng-repeat="item in items" style="height:300px;">
-	  				<a href="#" class="thumbnail"><img ng-src="{{item.image_url}}"></a>
-				  	<p class="text-muted"><small>{{item.title}}</small></p>
-				  	<p class="text-danger"><small>{{item.price}}</small></p>
+	  				<a href="{{item.url}}" class="thumbnail" target="_blank"><img ng-src="{{item.image_url}}"></a>
+			  		<a href="{{item.url}}" target="_blank"><small>{{item.title}} ({{item.label}})</small></a>
+				  	<span class="text-danger"><small>{{item.price}}</small></span>
+				  	<span class="text-warning"><small>{{item.format}}</small></span>
 				  </div>
 			  </div>
 			</div>

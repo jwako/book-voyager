@@ -4,10 +4,10 @@ bookControllers.controller('BookCtrl', function($scope, $http, Book) {
 	$scope.page = 1;
 	$scope.items = [];
   $scope.category = "";
-
+  $scope.price = "";
   $scope.loadMore = function() {
   	$scope.busy = true;
-    Book.getBooks($scope.page, $scope.category).then(function(book) {
+    Book.getBooks($scope.page, $scope.category, $scope.price).then(function(book) {
       $scope.busy = false;
       for (var i = 0; i < book.data.length; i++) {
         $scope.items.push(book.data[i]);
@@ -45,6 +45,17 @@ bookControllers.controller('CategoryCtrl', function($scope, $http) {
 
   showCategory = function(category) {
     category.show_flag = true;
+  }
+
+});
+
+bookControllers.controller('ConditionCtrl', function($scope, $http, Book) {
+  $scope.retrieveByPrice = function(priceRange) {
+    var scope = angular.element('#books').scope();
+    scope.page = 1 ;
+    scope.price = priceRange;
+    scope.items = [];
+    scope.loadMore();
   }
 
 });

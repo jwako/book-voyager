@@ -5,6 +5,7 @@ module AmazonClient
 		desc "Returns books based on browse node id from Amazon"
 		get '/books/:id', :rabl => "item" do
 			@browse_node_id = params[:bn].blank? ? ROOT_BROWSE_NODE_ID : params[:bn]
+			min_price, max_price = params[:pr].blank? ? ["",""] : PRICE[params[:pr]]
 		  res = Amazon::Ecs.item_search(
 		    @browse_node_id,
 		    { 
@@ -13,10 +14,13 @@ module AmazonClient
 		      :country => 'jp',
 		      :response_group => 'Medium',
 		      :sort => 'salesrank',
-		      :item_page => params[:id]
+		      :item_page => params[:id],
+		      :minimum_price => min_price,
+		      :maximum_price => max_price
 		    }
 		  )
 		  @items = res.items
+		  # binding.pry
 		end
 
 		desc "Returns categories from Amazon"

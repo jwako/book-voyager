@@ -4,4 +4,6 @@ node(:author) { |i| i.get('ItemAttributes/Author') }
 node(:asin) { |i| i.get('ASIN') }
 node(:image_url) { |i| i.get('MediumImage/URL') }
 node(:url) { |i| i.get("DetailPageURL") }
-node(:price) { |i| i.get('ItemAttributes/ListPrice/FormattedPrice')}
+node(:price) { |i| i.get('ItemAttributes/ListPrice/FormattedPrice') }
+node(:label) { |i| i.get('ItemAttributes/Label') }
+node(:format) { |i| i.get('ItemAttributes/Format') }
