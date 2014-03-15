@@ -99,4 +99,6 @@ BookVoyager::Application.configure do
   # AngularJS
   config.assets.js_compressor = Uglifier.new(mangle: false)
 
+  # For debugging
+  config.assets.debug = true
 end
