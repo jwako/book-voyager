@@ -1,6 +1,6 @@
 unless ENV["AWS_SECRET_KEY"].nil?
   Amazon::Ecs.options = {
-    :associate_tag => 'kindlemania02-20',
+    :associate_tag => 'jay1980-22',
     :AWS_access_key_id => ENV["AWS_ACCESS_KEY"],
     :AWS_secret_key => ENV["AWS_SECRET_KEY"]
   }
