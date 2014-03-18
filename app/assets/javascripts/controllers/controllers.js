@@ -22,11 +22,17 @@ bookControllers.controller('BookCtrl', function($scope, $http, Book) {
 });
 
 bookControllers.controller('CategoryCtrl', function($scope, $http) {
-  $http.get('/v1/categories').success(function(data) {
-    $scope.tree = data;
-  });
+  
+  loadData = function () {
+    $http.get('/v1/categories').success(function(data) {
+      $scope.tree = data;
+    });
+  };
+
+  loadData();
 
   $scope.refresh = function(category) {
+    // category.active = "active";
     getChildCategories(category);
     getBooks(category.node_id);
     showCategory(category);
