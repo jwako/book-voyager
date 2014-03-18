@@ -20,7 +20,6 @@ module AmazonClient
 		    }
 		  )
 		  @items = res.items
-		  # binding.pry
 		end
 
 		desc "Returns categories from Amazon"

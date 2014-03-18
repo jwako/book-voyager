@@ -35,12 +35,17 @@
 			<div infinite-scroll="loadMore()" infinite-scroll-disabled='busy'>
 				<div class="row">
   				<div class="col-xs-6 col-md-3" ng-repeat="item in items" style="height:300px;">
+<%
+=begin %>
 	  				<a href="{{item.url}}" class="thumbnail" target="_blank"><img ng-src="{{item.image_url}}"></a>
+<%
+=end %>	  				
 			  		<a href="{{item.url}}" target="_blank"><small>{{item.title}} ({{item.label}})</small></a>
 				  	<span class="text-danger"><small>{{item.price}}</small></span>
 				  	<span class="text-warning"><small>{{item.format}}</small></span>
 				  </div>
 			  </div>
+			  <div id="donetext"></div>
 			</div>
 		</div>
   </div>

@@ -7,15 +7,18 @@ bookControllers.controller('BookCtrl', function($scope, $http, Book) {
   $scope.price = "";
   $scope.loadMore = function() {
   	$scope.busy = true;
-    Book.getBooks($scope.page, $scope.category, $scope.price).then(function(book) {
-      $scope.busy = false;
-      for (var i = 0; i < book.data.length; i++) {
-        $scope.items.push(book.data[i]);
-      }
-    });
-  	$scope.page += 1;
+    if ($scope.page <= 10) {
+      Book.getBooks($scope.page, $scope.category, $scope.price).then(function(book) {
+        $scope.busy = false;
+        for (var i = 0; i < book.data.length; i++) {
+          $scope.items.push(book.data[i]);
+        }
+      });
+      $scope.page += 1;
+    } else {
+      $("#donetext").append("<p class='text-info text-center'>You're reached the end of items.</p>");
+    }
   }
-
 });
 
 bookControllers.controller('CategoryCtrl', function($scope, $http) {
