@@ -22,9 +22,13 @@ bookControllers.controller('BookCtrl', function($scope, $http, Book) {
 });
 
 bookControllers.controller('CategoryCtrl', function($scope, $http) {
-  
+  var selected_category;
+
   loadData = function () {
     $http.get('/v1/categories').success(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        data[i].root_node_id = data[i].node_id;
+      }
       $scope.tree = data;
     });
   };
@@ -32,14 +36,18 @@ bookControllers.controller('CategoryCtrl', function($scope, $http) {
   loadData();
 
   $scope.refresh = function(category) {
-    // category.active = "active";
     getChildCategories(category);
     getBooks(category.node_id);
     showCategory(category);
+    hideCategory(selected_category, category);
+    selected_category = category;
   }
 
   getChildCategories = function(category) {
     $http.get('/v1/categories?bn=' + category.node_id).success(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        data[i].root_node_id = category.root_node_id;
+      }
       category.nodes = data;
     });
   }
@@ -54,6 +62,19 @@ bookControllers.controller('CategoryCtrl', function($scope, $http) {
 
   showCategory = function(category) {
     category.show_flag = true;
+    category.active = "active";
+  }
+
+  hideCategory = function(pre_category, category) {
+    if (pre_category != undefined && pre_category.root_node_id != category.root_node_id) {
+      for (var i = 0; i < $scope.tree.length; i++) {
+        if ( $scope.tree[i].root_node_id == pre_category.root_node_id ) {
+          $scope.tree[i].show_flag = false;
+          $scope.tree[i].active = "";
+          return;
+        }
+      }
+    }
   }
 
 });

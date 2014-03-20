@@ -31,6 +31,9 @@ module AmazonClient
 	    	:country => 'jp'
 	    )
 	    @categories = (res.doc/"Children/BrowseNode").collect { |item| Amazon::Element.new(item).get_hash }
+	    @categories.each do |category|
+	    	category.store("ParentNodeId", @browse_node_id)
+	    end
 	  end
 	end
 end
