@@ -6,9 +6,8 @@
 </script>
 
 <div class="row">
-
 <p class="text-warning text-center" style="font-size:9pt;">
-本サイトで表示されている商品の金額等の数値には一切の責任を持ちません。ご利用はユーザー様の自己責任で宜しくお願い致します
+本サイトで表示されている商品の金額等の数値には一切の責任を持ちません。ご利用はユーザー様の自己責任でお願い致します
 </p>
 </div>
 
@@ -57,11 +56,7 @@
 			<div infinite-scroll="loadMore()" infinite-scroll-disabled='busy'>
 				<div class="row">
   				<div class="col-xs-6 col-md-3" ng-repeat="item in items" style="height:300px;">
-<%
-=begin %>
 	  				<a href="{{item.url}}" class="thumbnail" target="_blank"><img ng-src="{{item.image_url}}"></a>
-<%
-=end %>	  				
 			  		<a href="{{item.url}}" target="_blank"><small>{{item.title}} ({{item.label}})</small></a>
 				  	<p class="text-danger"><small>{{item.price}}</small></p>
 				  	<p class="text-warning"><small>{{item.format}}</small></p>
