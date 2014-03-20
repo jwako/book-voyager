@@ -11,9 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require jquery-ujs/src/rails
 //= require turbolinks
-//= require bootstrap
 //= require angular
 //= require ngInfiniteScroll
 //= require angular-bootstrap
