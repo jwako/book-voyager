@@ -6,6 +6,12 @@
 </script>
 
 <div class="row">
+<p class="text-warning text-center" style="font-size:9pt;">
+本サイトで表示されている商品の金額等の数値には一切の責任を持ちません。ご利用はユーザー様の自己責任で宜しくお願い致します
+</p>
+</div>
+
+<div class="row">
 
   <div class="col-xs-3">
   	<h4>カテゴリ</h4>
@@ -15,7 +21,18 @@
   </div>
 
   <div class="col-xs-9">
-  	<h4>絞り込み条件</h4>
+		<div class="row">
+		  <div class="col-md-8"><h4>絞り込み条件</h4></div>
+  		<div class="col-md-4">
+	  		<ul class="nav nav-pills">
+  			<li><h4>ソート条件</h4></li>
+  			<li class="pull-right" ng-controller="SortCtrl">
+	  			<select class="form-control input-sm" ng-options="s.val as s.text for s in sorts" 
+	  				ng-model="item.type" ng-change="sort()"></select>
+				</li>
+				</ul>
+  		</div>
+		</div>
   	<div class="panel panel-default" id="conditions" ng-controller="ConditionCtrl">
 		  <div class="panel-body">
 		  	<ul class="nav nav-pills">
@@ -27,6 +44,10 @@
 			    <li ng-click="retrieveByPrice(4)"><a href="#">1500-3000円</a></li>
 			    <li ng-click="retrieveByPrice(5)"><a href="#">3000-5000円</a></li>
 			    <li ng-click="retrieveByPrice(6)"><a href="#">5000円以上</a></li>
+				</ul>
+				<ul class="nav nav-pills">
+			    <li><strong>在庫の有無</strong></li>
+			    <li ng-click="retrieveByStock()"><a href="#">有のみ</a></li>
 				</ul>
 		  </div>
 		</div>
@@ -41,8 +62,8 @@
 <%
 =end %>	  				
 			  		<a href="{{item.url}}" target="_blank"><small>{{item.title}} ({{item.label}})</small></a>
-				  	<span class="text-danger"><small>{{item.price}}</small></span>
-				  	<span class="text-warning"><small>{{item.format}}</small></span>
+				  	<p class="text-danger"><small>{{item.price}}</small></p>
+				  	<p class="text-warning"><small>{{item.format}}</small></p>
 				  </div>
 			  </div>
 			  <div id="donetext"></div>

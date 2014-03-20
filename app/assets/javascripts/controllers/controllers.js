@@ -5,10 +5,12 @@ bookControllers.controller('BookCtrl', function($scope, $http, Book) {
 	$scope.items = [];
   $scope.category = "";
   $scope.price = "";
+  $scope.stock = "";
+  $scope.sort = "";
   $scope.loadMore = function() {
   	$scope.busy = true;
     if ($scope.page <= 10) {
-      Book.getBooks($scope.page, $scope.category, $scope.price).then(function(book) {
+      Book.getBooks($scope.page, $scope.category, $scope.price, $scope.stock, $scope.sort).then(function(book) {
         $scope.busy = false;
         for (var i = 0; i < book.data.length; i++) {
           $scope.items.push(book.data[i]);
@@ -88,5 +90,30 @@ bookControllers.controller('ConditionCtrl', function($scope, $http, Book) {
     scope.loadMore();
   }
 
+  $scope.retrieveByStock = function() {
+    var scope = angular.element('#books').scope();
+    scope.page = 1 ;
+    scope.stock = "Available";
+    scope.items = [];
+    scope.loadMore();
+  }
 });
-	
+
+bookControllers.controller('SortCtrl', function($scope, $http, Book) {
+  $scope.sorts = [ 
+    {val: 'salesrank', text: '人気順'}, 
+    {val: 'pricerank', text: '価格安い順'}, 
+    {val: 'inverse-pricerank', text: '価格高い順'}, 
+    {val: 'daterank', text: '発売日順'}, 
+    {val: 'titlerank', text: 'タイトル順'}, 
+    {val: '-titlerank', text: 'タイトル逆順'}
+  ];
+  $scope.item = {type : $scope.sorts[0].val};
+  $scope.sort = function() {
+    var scope = angular.element('#books').scope();
+    scope.page = 1 ;
+    scope.items = [];
+    scope.sort = $scope.item.type;
+    scope.loadMore();
+  }
+});

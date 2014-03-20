@@ -6,6 +6,8 @@ module AmazonClient
 		get '/books/:id', :rabl => "item" do
 			@browse_node_id = params[:bn].blank? ? ROOT_BROWSE_NODE_ID : params[:bn]
 			min_price, max_price = params[:pr].blank? ? ["",""] : PRICE[params[:pr]]
+			availability = params[:av].blank? ? "" : params[:av]
+			sort = params[:st].blank? ? "salesrank" : params[:st]
 		  res = Amazon::Ecs.item_search(
 		    @browse_node_id,
 		    { 
@@ -13,10 +15,13 @@ module AmazonClient
 		    	:type => 'BrowseNode', 
 		      :country => 'jp',
 		      :response_group => 'Medium',
-		      :sort => 'salesrank',
+		      :sort => sort,
 		      :item_page => params[:id],
 		      :minimum_price => min_price,
-		      :maximum_price => max_price
+		      :maximum_price => max_price,
+		      :merchant_id => "All",
+		      :condition => "All",
+		      :availability => availability
 		    }
 		  )
 		  @items = res.items
