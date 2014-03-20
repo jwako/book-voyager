@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require angular
 //= require ngInfiniteScroll
+//= require angular-bootstrap
 //= require_tree .

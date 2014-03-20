@@ -1,4 +1,4 @@
-var bookControllers = angular.module('bookControllers', ['infinite-scroll']);
+var bookControllers = angular.module('bookControllers', ['ui.bootstrap', 'infinite-scroll']);
 
 bookControllers.controller('BookCtrl', function($scope, $http, Book) {
 	$scope.page = 1;
@@ -117,3 +117,4 @@ bookControllers.controller('SortCtrl', function($scope, $http, Book) {
     scope.loadMore();
   }
 });
+

@@ -1,6 +1,8 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "ngInfiniteScroll": "latest"
+    "angular": "latest",
+    "ngInfiniteScroll": "latest",
+    "angular-bootstrap": "latest"
   }
 }
