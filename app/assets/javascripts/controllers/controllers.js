@@ -90,10 +90,14 @@ bookControllers.controller('ConditionCtrl', function($scope, $http, Book) {
     scope.loadMore();
   }
 
-  $scope.retrieveByStock = function() {
+  $scope.retrieveByStock = function(flag) {
     var scope = angular.element('#books').scope();
     scope.page = 1 ;
-    scope.stock = "Available";
+    if (flag == 0) {
+      scope.stock = "";
+    } else {
+      scope.stock = "Available";
+    }
     scope.items = [];
     scope.loadMore();
   }

@@ -1,12 +1,13 @@
 <script type="text/ng-template" id="category-tmpl">
 	<span ng-click="refresh(data)">{{data.name}}</span>
 	<div class="list-group" ng-show="data.show_flag">
-		<a href="#" class="list-group-item {{data.active}}" ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></a>
+		<a href="#" class="list-group-item {{data.active}}" 
+			ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></a>
 	</div>
 </script>
 
 <div class="row">
-<p class="text-warning text-center" style="font-size:9pt;">
+<p class="text-danger text-center" style="font-size:9pt;">
 本サイトで表示されている商品の金額等の数値には一切の責任を持ちません。ご利用はユーザー様の自己責任でお願い致します
 </p>
 </div>
@@ -21,35 +22,38 @@
   </div>
 
   <div class="col-xs-9">
-		<div class="row">
-		  <div class="col-md-8"><h4>絞り込み条件</h4></div>
-  		<div class="col-md-4">
-	  		<ul class="nav nav-pills">
-  			<li><h4>ソート条件</h4></li>
-  			<li class="pull-right" ng-controller="SortCtrl">
-	  			<select class="form-control input-sm" ng-options="s.val as s.text for s in sorts" 
-	  				ng-model="item.type" ng-change="sort()"></select>
-				</li>
-				</ul>
-  		</div>
-		</div>
-  	<div class="panel panel-default" id="conditions" ng-controller="ConditionCtrl">
-		  <div class="panel-body">
-		  	<ul class="nav nav-pills">
-			    <li><strong>価格帯</strong></li>
-			    <li ng-click="retrieveByPrice(0)"><a href="#">0-250円</a></li>
-			    <li ng-click="retrieveByPrice(1)"><a href="#">250-500円</a></li>
-			    <li ng-click="retrieveByPrice(2)"><a href="#">500-1000円</a></li>
-					<li ng-click="retrieveByPrice(3)"><a href="#">1000-1500円</a></li>
-			    <li ng-click="retrieveByPrice(4)"><a href="#">1500-3000円</a></li>
-			    <li ng-click="retrieveByPrice(5)"><a href="#">3000-5000円</a></li>
-			    <li ng-click="retrieveByPrice(6)"><a href="#">5000円以上</a></li>
-				</ul>
-				<ul class="nav nav-pills">
-			    <li><strong>在庫の有無</strong></li>
-			    <li ng-click="retrieveByStock()"><a href="#">有のみ</a></li>
-				</ul>
-		  </div>
+  	<div id="conditions">
+			<div class="row">
+			  <div class="col-md-8"><h4>絞り込み条件</h4></div>
+	  		<div class="col-md-4">
+		  		<ul class="list-inline">
+	  			<li class="pull-right" ng-controller="SortCtrl">
+		  			<select class="form-control input-sm" ng-options="s.val as s.text for s in sorts" 
+		  				ng-model="item.type" ng-change="sort()"></select>
+					</li>
+					</ul>
+	  		</div>
+			</div>
+	  	<div class="panel panel-default" id="conditions" ng-controller="ConditionCtrl">
+			  <div class="panel-body">
+			  	<ul class="list-inline">
+				    <li style="width:100px;"><strong>価格帯</strong></li>
+				    <li ng-click="retrieveByPrice()"><a href="#">全て</a></li>
+				    <li ng-click="retrieveByPrice(0)"><a href="#">0-250円</a></li>
+				    <li ng-click="retrieveByPrice(1)"><a href="#">250-500円</a></li>
+				    <li ng-click="retrieveByPrice(2)"><a href="#">500-1000円</a></li>
+						<li ng-click="retrieveByPrice(3)"><a href="#">1000-1500円</a></li>
+				    <li ng-click="retrieveByPrice(4)"><a href="#">1500-3000円</a></li>
+				    <li ng-click="retrieveByPrice(5)"><a href="#">3000-5000円</a></li>
+				    <li ng-click="retrieveByPrice(6)"><a href="#">5000円以上</a></li>
+					</ul>
+					<ul class="list-inline ">
+				    <li style="width:100px;"><strong>在庫の有無</strong></li>
+				    <li ng-click="retrieveByStock(0)"><a href="#">全て</a></li>				    
+				    <li ng-click="retrieveByStock(1)"><a href="#">有のみ</a></li>
+					</ul>
+			  </div>
+			</div>  
 		</div>
 
 		<div id="books" ng-controller="BookCtrl">
