@@ -1,62 +1,58 @@
 <script type="text/ng-template" id="category-tmpl">
-	<span ng-click="refresh(data)">{{data.name}}</span>
-	<div class="list-group" ng-show="data.show_flag">
-		<a href="#" class="list-group-item {{data.active}}" 
-			ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></a>
-	</div>
+	<a href="#" ng-click="refresh(data)">{{data.name}}</a>
+	<ul class="nav" ng-show="data.show_flag">
+		<li class="list-group-item {{data.active}}" ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></li>
+	</ul>
 </script>
 
-<div class="row">
-<p class="text-danger text-center" style="font-size:9pt;">
-本サイトで表示されている商品の金額等の数値には一切の責任を持ちません。ご利用はユーザー様の自己責任でお願い致します
-</p>
-</div>
+<script>
+$(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});
+</script>
 
-<div class="row">
+<div class="row row-offcanvas row-offcanvas-left">
 
-  <div class="col-xs-12 col-sm-3">
-  	<h4>カテゴリ</h4>
-	  <div id="categories" class="list-group" ng-controller="CategoryCtrl">
-			<a href="#" class="list-group-item {{data.active}}" ng-repeat="data in tree" ng-include="'category-tmpl'"></a>
-		</div>
+  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+	  <ul id="categories" class="nav" ng-controller="CategoryCtrl">
+			<li class="list-group-item {{data.active}}" ng-repeat="data in tree" ng-include="'category-tmpl'"></li>
+		</ul>
   </div>
 
   <div class="col-xs-12 col-sm-9">
   	<div id="conditions">
-			<div class="row">
-			  <div class="col-xs-8"><h4>絞り込み条件</h4></div>
-	  		<div class="col-xs-4">
-		  		<ul class="list-inline">
-	  			<li class="pull-right" ng-controller="SortCtrl">
-		  			<select class="form-control input-sm" ng-options="s.val as s.text for s in sorts" 
-		  				ng-model="item.type" ng-change="sort()"></select>
-					</li>
-					</ul>
-	  		</div>
+  		<div>
+	  		<ul class="list-inline">
+				<li class="pull-right" ng-controller="SortCtrl">
+	  			<select class="form-control input-sm" ng-options="s.val as s.text for s in sorts" 
+	  				ng-model="item.type" ng-change="sort()"></select>
+				</li>
+				</ul>
 			</div>
-			<div class="row">
-		  	<div class="panel panel-default" id="conditions" ng-controller="ConditionCtrl">
-				  <div class="panel-body">
-				  	<ul class="list-inline">
-					    <li><strong>価格帯</strong></li>
-					    <li ng-click="retrieveByPrice()"><a href="#">全て</a></li>
-					    <li ng-click="retrieveByPrice(0)"><a href="#">0-250円</a></li>
-					    <li ng-click="retrieveByPrice(1)"><a href="#">250-500円</a></li>
-					    <li ng-click="retrieveByPrice(2)"><a href="#">500-1000円</a></li>
-							<li ng-click="retrieveByPrice(3)"><a href="#">1000-1500円</a></li>
-					    <li ng-click="retrieveByPrice(4)"><a href="#">1500-3000円</a></li>
-					    <li ng-click="retrieveByPrice(5)"><a href="#">3000-5000円</a></li>
-					    <li ng-click="retrieveByPrice(6)"><a href="#">5000円以上</a></li>
-						</ul>
-						<ul class="list-inline ">
-					    <li><strong>在庫の有無</strong></li>
-					    <li ng-click="retrieveByStock(0)"><a href="#">全て</a></li>				    
-					    <li ng-click="retrieveByStock(1)"><a href="#">有のみ</a></li>
-						</ul>
-				  </div>
-				</div>  
-			</div>  
-		</div>
+
+	  	<div class="panel panel-default" id="conditions" ng-controller="ConditionCtrl">
+			  <div class="panel-body">
+			  	<ul class="list-inline">
+				    <li><strong>価格帯</strong></li>
+				    <li ng-click="retrieveByPrice()"><a href="#">全て</a></li>
+				    <li ng-click="retrieveByPrice(0)"><a href="#">0-250円</a></li>
+				    <li ng-click="retrieveByPrice(1)"><a href="#">250-500円</a></li>
+				    <li ng-click="retrieveByPrice(2)"><a href="#">500-1000円</a></li>
+						<li ng-click="retrieveByPrice(3)"><a href="#">1000-1500円</a></li>
+				    <li ng-click="retrieveByPrice(4)"><a href="#">1500-3000円</a></li>
+				    <li ng-click="retrieveByPrice(5)"><a href="#">3000-5000円</a></li>
+				    <li ng-click="retrieveByPrice(6)"><a href="#">5000円以上</a></li>
+					</ul>
+					<ul class="list-inline ">
+				    <li><strong>在庫の有無</strong></li>
+				    <li ng-click="retrieveByStock(0)"><a href="#">全て</a></li>				    
+				    <li ng-click="retrieveByStock(1)"><a href="#">有のみ</a></li>
+					</ul>
+			  </div>
+			</div>
+		</div>  
 
 		<div id="books" ng-controller="BookCtrl">
 			<div infinite-scroll="loadMore()" infinite-scroll-disabled='busy'>

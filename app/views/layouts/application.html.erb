@@ -8,14 +8,14 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body style="background-color: rgb(241, 242, 246);">
+<body>
   <div id="wrap">
     <header>
       <%= render 'layouts/navigation' %>
     </header>
     
     <div class="topic">  
-    <div class="container" ng-app="bookvoyagerApp">
+    <div class="container-fluid" ng-app="bookvoyagerApp">
        
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3 text-center">
@@ -23,11 +23,7 @@
         </div>
       </div>
       
-      <div class="row">
-        <div class="col-sm-12">
-          <%= yield %>
-        </div>     
-      </div>  
+      <%= yield %>
       
     </div>
     </div>
