@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="category-tmpl">
-	<a href="#" ng-click="refresh(data)">{{data.name}}</a>
+	<a class="{{data.active}}" href="#" ng-click="refresh(data)">{{data.name}}</a>
 	<ul class="nav" ng-show="data.show_flag">
-		<li class="list-group-item {{data.active}}" ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></li>
+		<li ng-repeat="data in data.nodes" ng-include="'category-tmpl'"></li>
 	</ul>
 </script>
 
@@ -17,7 +17,7 @@ $(document).ready(function() {
 
   <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
 	  <ul id="categories" class="nav" ng-controller="CategoryCtrl">
-			<li class="list-group-item {{data.active}}" ng-repeat="data in tree" ng-include="'category-tmpl'"></li>
+			<li ng-repeat="data in tree" ng-include="'category-tmpl'"></li>
 		</ul>
   </div>
 
